@@ -48,7 +48,6 @@ export default function Root() {
             <input
               id="q"
               className={searching ? "loading" : ""}
-
               aria-label="Search contacts"
               placeholder="Search"
               type="search"
@@ -56,9 +55,13 @@ export default function Root() {
               defaultValue={q}
               onChange={(event) => {
                 submit(event.currentTarget.form);
+                const isFirstSearch = q == null;
+                submit(event.currentTarget.form, {
+                  replace: !isFirstSearch,
+                });
               }}
             />
-            <div id="search-spinner"     hidden={!searching} aria-hidden />
+            <div id="search-spinner" hidden={!searching} aria-hidden />
             <div className="sr-only" aria-live="polite"></div>
           </Form>
           <Form method="post">
