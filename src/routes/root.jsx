@@ -6,6 +6,7 @@ import {
   Form,
   redirect,
   NavLink,
+  useNavigation
 } from "react-router-dom";
 import { getContacts, createContact } from "../contacts";
 
@@ -80,7 +81,9 @@ export default function Root() {
           )}
         </nav>
       </div>
-      <div id="detail">
+      <div id="detail"   className={
+          navigation.state === "loading" ? "loading" : ""
+        }>
         <Outlet />
       </div>
     </>
